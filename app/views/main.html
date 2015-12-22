@@ -1,0 +1,14 @@
+
+<div ng-controller="TodoCtrl">
+<div class="row">
+  <div class="col-nd-12" ng-repeat="todo in todos">
+    {{todo.text}}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-nd-12">
+    <input type="text" ng-model="new_todo" ng-keyup="add($event)">
+  </div>
+</div>
+</div>
