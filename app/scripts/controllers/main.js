@@ -1,27 +1,29 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name todoApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the todoApp
- */
+
 angular.module('todoApp')
   .controller('TodoCtrl', function($scope,$http){
   	$scope.todos = [];
-  	$scope.new_todo = '';
-	$http.get('/api/v1/todo').success(function(data){
-		$scope.todos = data;
-	});
+  	$scope.newToDo = '';
+  	var update = function(){
+  		$http.get('/api/v1/todo').success(function(data){
+			$scope.todos = data;
+		});
+  	};
+  	update();
 	$scope.add = function(event){
-		if(event.keyCode == 13 ){
-			$http.post('/api/v1/todo', {text: $scope.new_todo}).success(function(data){
+		if(event.keyCode === 13 ){
+			$http.post('/api/v1/todo', {text: $scope.newToDo}).success(function(data){
 				$scope.todos = data;
-				$scope.new_todo = '';
+				$scope.newToDo = '';
 			});
 		}
-	}
+	};
+	$scope.done = function(id){
+			$http.delete('/api/v1/todo/' + id).success(function(data){
+				update();
+			});
+	};
   })
-  .controller('MainCtrl', function ($scope, $http) { 
+  .controller('MainCtrl', function () { 
   });
