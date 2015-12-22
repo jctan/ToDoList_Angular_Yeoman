@@ -19,10 +19,13 @@ angular.module('todoApp')
 			});
 		}
 	};
+	$scope.save = function(event, todo){
+		if(event.keyCode === 13 ){
+			$http.post('/api/v1/todo/' + todo.id, {text: todo.text}).success(update);
+		}
+	};
 	$scope.done = function(id){
-			$http.delete('/api/v1/todo/' + id).success(function(data){
-				update();
-			});
+			$http.delete('/api/v1/todo/' + id).success(update);
 	};
   })
   .controller('MainCtrl', function () { 

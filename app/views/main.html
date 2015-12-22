@@ -1,15 +1,15 @@
 
 <div ng-controller="TodoCtrl">
 <div class="row">
-  <div class="col-nd-12" ng-repeat="todo in todos">
+  <div class="col-nd-12 task" ng-repeat="todo in todos track by todo.id">
     <button ng-click="done(todo.id)" class="btn btn-xs btn-danger">Done</button>
-    {{todo.text}}
+    <input text="text" ng-model="todo.text" ng-keyup="save($event, todo)"/>
   </div>
 </div>
 
-<div class="row">
-  <div class="col-nd-12">
-    <input type="text" ng-model="newToDo" ng-keyup="add($event)">
+  <div class="row">
+    <div class="col-nd-12">
+      <input type="text" ng-model="newToDo" ng-keyup="add($event)">
+    </div>
   </div>
-</div>
 </div>

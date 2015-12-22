@@ -89,3 +89,22 @@ body {
     border-bottom: 0;
   }
 }
+
+.task.ng-enter,
+.task.ng-leave{
+  -webkit-transition: 0.5s linear all;
+  transition:0.5s linear all;
+}
+
+.task.ng-enter,
+.task.ng-leave.ng-leave-active{
+  opacity:0;
+}
+.task.ng-leave,
+.task.ng-enter.ng-enter-active{
+  opacity:1;
+}
+
+.ng-hide{
+  display:none!important;
+}
