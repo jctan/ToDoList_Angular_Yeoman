@@ -3,7 +3,18 @@
 angular.module('todo', [])
 .factory('api', function($http,$resource,$q){
 	var Task = $resource('/api/v1/todo/:taskId',{taskId:'@id'});
-	return {
+	var self = {
+	//return {
+		currentItem: null,
+
+		getOne: function(id){
+			var deferred = $q.defer();
+			Task.query({taskId:id},function(data){
+				self.currentItem = data;
+				deferred.resolve(data);
+			});
+			return deferred.promise;
+		},
 		get: function(){ //don't need cb with promise
 			var deferred = $q.defer();
 			Task.query(function(data){
@@ -32,10 +43,14 @@ angular.module('todo', [])
 		},
 		update: function(todo){ //don't need cb with promise
 			var deferred = $q.defer();
-			todo.$save().then(function(){
+			$http.post('/api/v1/todo/' + todo.id, {text: todo.text}).success(function(){
 				deferred.resolve();
 			});
+			/*todo.$save().then(function(){
+				deferred.resolve();
+			});*/
 			return deferred.promise;
 		}
 	};
+	return self;
 });

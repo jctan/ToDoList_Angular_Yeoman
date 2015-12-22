@@ -25,9 +25,9 @@ angular.module('todoApp')
 				$scope.newToDo = '';
 			});
 		}
-	};*/
+	};
 
-	/*$scope.save = function(event, todo){
+	$scope.save = function(event, todo){
 		if(event.keyCode === 13 ){
 			api.update(todo).then(update);
 			//api.update(todo update);
@@ -35,7 +35,7 @@ angular.module('todoApp')
 			//$http.post('/api/v1/todo/' + todo.id, {text: todo.text}).success(update);
 		}
 	};
-	
+
 	$scope.done = function(id){
 			api.delete(id).then(update);
 			//api.delete(id, update);
