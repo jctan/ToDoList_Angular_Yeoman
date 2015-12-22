@@ -40,10 +40,11 @@ module.exports = function(connect, middlewares){
 					if(id != null){
 						var item = find_by_id(id);
 						item.text = obj.text;
+						obj = item;
 					} else {
 						items.push(obj);
 					}
-					res.end(JSON.stringify(items));
+					res.end(JSON.stringify(obj));
 				});
 			}
 			if(req.method == 'DELETE'){
