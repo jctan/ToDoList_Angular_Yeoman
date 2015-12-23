@@ -13,7 +13,7 @@ angular.module('todoApp')
 		});
 	});*/
 	$scope.save = function(){
-		api.update($scope.item).then(function(data){
+		api.update($scope.item).then(function(){
 			window.location.href='#/';
 		});
 	};

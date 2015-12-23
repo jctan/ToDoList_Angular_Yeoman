@@ -21,7 +21,7 @@ angular
     'ngAnimate',
     'todo'
   ])
-  .config(function ($routeProvider, $locationProvider) {
+  .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -39,19 +39,11 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-      $locationProvider.html5Mode(true);
+      //$locationProvider.html5Mode(true);
   })
   .run(function($rootScope){
       $rootScope.$on('$routeChangeSuccess', function(data){
         console.log('routeChangeSuccess');
-        console.log(data);
-      });
-      $rootScope.$on('$viewContentLoaded', function(data){
-        console.log('viewContentLoaded');
-        console.log(data);
-      });
-      $rootScope.$on('$routeChangeError', function(data){
-        console.log('routeChangeError');
         console.log(data);
       });
   });
